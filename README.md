@@ -1,1 +1,1 @@
-# CRC
+# Cyclic Redundancy Check (CRC)
