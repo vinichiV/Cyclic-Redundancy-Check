@@ -20,8 +20,8 @@ module crc #(parameter width = 32, parameter poly_width = 9) // adjust
   always @(posedge clk) begin
     case(state)
       0:begin
-    	i = width;
-    	shift_poly = poly << (width - 1);
+    	  i <= width;
+    	  shift_poly <= poly << (width - 1);
         temp <= message << (poly_width - 1);
         state <= 1;
       end
