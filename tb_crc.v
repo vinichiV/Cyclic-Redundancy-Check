@@ -10,6 +10,8 @@ module tb_crc;
   reg [width-1:0] message;
   reg reset;
   reg [poly_width - 1:0] poly;
+  reg write_n;
+  reg read_n;
   wire [poly_width - 2:0] crc_value;
 
   // Instantiate DUT
@@ -18,6 +20,8 @@ module tb_crc;
     .message(message),
     .reset(reset),
     .poly(poly),
+    .write_n(write_n),
+    .read_n(read_n),
     .crc_value(crc_value)
   );
 
@@ -30,21 +34,31 @@ module tb_crc;
   // Stimulus
   initial begin
     
+    write_n = 1;
+    read_n = 1;
     poly = 'b100000111;
     message = 'b10001111100111001101101111111000;
     #10 reset = 0;
     #5 reset = 1;
     #5 reset = 0;
-    #1000;
+    #5 write_n = 0;
+    #1000 read_n = 0;
+    #10
     $display("Final CRC value = %b", crc_value);
+    #10
     
+    write_n = 1;
+    read_n = 1;
     poly = 'b111010101;
     message = 'b00110011110000111101000011001010;
     #10 reset = 0;
     #5 reset = 1;
     #5 reset = 0;
-    #1000;
+    #5 write_n = 0;
+    #1000 read_n = 0;
+    #10
     $display("Final CRC value = %b", crc_value);
+    #10
     
     $finish;
    end
