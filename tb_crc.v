@@ -58,7 +58,6 @@ module tb_crc;
     #1000 read_n = 0;
     #10
     $display("Final CRC value = %b", crc_value);
-    #10
     
     $finish;
    end
