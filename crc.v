@@ -14,7 +14,7 @@ module crc #(parameter width = 32, parameter poly_width = 9) // adjust
   reg [poly_width - 2:0] final_value;
   
   localparam INIT = 2'd0,
-  	     CALC = 2'd1,
+  	     	 CALC = 2'd1,
              DONE = 2'd2;
   
   always @(posedge clk) begin
